@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "outDir": "./dist",
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "resolveJsonModule": true,
+        "baseUrl": ".",
+        "moduleResolution": "node",
+        "paths": {
+            "@common/*": [
+                "./src/common"
+            ],
+            "@dynamo-db/*": [
+                "./src/common/dynamo-db/*"
+            ],
+            "@account/*": [
+                "./src/account/*"
+            ],
+            "@tables/*": [
+                "./src/migrations/specs/*"
+            ],
+            "@exceptions/*": [
+                "./src/expections/*"
+            ]
+        }
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.test.ts"
+    ]
+}

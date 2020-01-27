@@ -1,0 +1,19 @@
+{
+  "TableName": "migrationControl",
+  "KeySchema": [
+    {
+      "AttributeName": "migrationId",
+      "KeyType": "HASH"
+    }
+  ],
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "migrationId",
+      "AttributeType": "S"
+    }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 1,
+    "WriteCapacityUnits": 1
+  }
+}
