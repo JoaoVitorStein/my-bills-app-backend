@@ -1,17 +1,9 @@
-import Account, { toItem } from "./account-dto";
+import Account from "./types";
 import * as AccountRepository from "./account-repository";
-import HttpError from "@exceptions/http-error";
-import AccountType from "./account-type";
+import uuid from "uuid";
 
-export async function createAccount(account: Account) {
-    if (!account.userId) {
-        throw new HttpError(400, "userId is a mandatory information");
-    }
-    if (!account.type || !(account.type in AccountType)) {
-        throw new HttpError(400, "type is a mandatory information");
-    }
-    if (!account.name) {
-        throw new HttpError(400, "name is a mandatory information");
-    }
-    return AccountRepository.save(toItem(account));
+export async function createAccount(account: Account): Promise<Account> {
+    account.id = uuid();
+    await AccountRepository.save(account);
+    return account;
 }
