@@ -10,7 +10,7 @@
         "moduleResolution": "node",
         "paths": {
             "@common/*": [
-                "./src/common"
+                "./src/common/*"
             ],
             "@dynamo-db/*": [
                 "./src/common/dynamo-db/*"

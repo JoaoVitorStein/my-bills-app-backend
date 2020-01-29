@@ -1,5 +1,5 @@
 export interface Account {
-    id: string;
+    id?: string;
     type: AccountType;
     name: string;
     initialBalance: number;

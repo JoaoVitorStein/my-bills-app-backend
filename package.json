@@ -9,7 +9,7 @@
         "start": "node --inspect=5858 -r ts-node/register src/index.ts",
         "dev": "nodemon",
         "test": "jest",
-        "test:watch": "jest --watch"
+        "test:watch": "jest --coverage --watchAll "
     },
     "repository": {
         "type": "git",

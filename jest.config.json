@@ -1,0 +1,13 @@
+{
+    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "transform": {
+        "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "moduleNameMapper": {
+        "@common/(.*)": "<rootDir>/src/common/$1",
+        "@dynamo-db/(.*)": "<rootDir>/src/common/dynamo-db/$1",
+        "@account/(.*)": "<rootDir>/src/account/$1",
+        "@tables/(.*)": "<rootDir>/src/migrations/specs/$1",
+        "@exceptions/(.*)": "<rootDir>/src/expections/$1"
+    }
+}

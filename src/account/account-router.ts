@@ -6,8 +6,6 @@ import validationMiddleware from "../common/middlewares/validator-middleware";
 
 const router = express.Router();
 
-router.use(validationMiddleware);
-
 router.post(
     "/",
     checkSchema({
@@ -31,7 +29,6 @@ router.post(
     validationMiddleware,
     async (req: Request, res: Response) => {
         try {
-            throw new Error("fodase");
             const account: Account = req.body;
             const response = await createAccount(account);
             await res.send({ created: response });
