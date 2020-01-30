@@ -16,12 +16,12 @@ export enum AccountType {
 
 export function accountFromItem(document): Account {
     return {
-        id: document.id.S,
-        type: document.type.S,
-        name: document.name.S,
-        initialBalance: document.initialBalance.N,
-        currentBalance: document.currentBalance.N,
-        userId: document.userId.S
+        id: document.id && document.id.S,
+        type: document.type && document.type.S,
+        name: document.name && document.name.S,
+        initialBalance: document.initialBalance && +document.initialBalance.N,
+        currentBalance: document.currentBalance && +document.currentBalance.N,
+        userId: document.userId && document.userId.S
     };
 }
 

@@ -1,5 +1,5 @@
 import Client from "./dynamo-db-client";
-import { PutItemOutput } from "aws-sdk/clients/dynamodb";
+import { PutItemOutput, GetItemOutput } from "aws-sdk/clients/dynamodb";
 
 function getDynamoDbValue(value) {
     if (value instanceof Date) {
@@ -37,4 +37,8 @@ export async function createItem(
         TableName: tableName,
         Item: toItem(item)
     }).promise();
+}
+
+export async function getItem(params): Promise<GetItemOutput> {
+    return Client.getItem(params).promise();
 }
