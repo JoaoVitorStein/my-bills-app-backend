@@ -13,7 +13,7 @@ This is the backend for https://github.com/charlesmst/my-bills-app
 ### To-do
 
 -   Unit tests
--   Account API (Update, Delete)
+-   Account API (Delete)
 -   Category API (List, Create, Update, Delete, Bills by category, Total expenses by category)
 -   Bill API (List, Create, Update, Delete)
 -   Authentication (AWS Incognito???)

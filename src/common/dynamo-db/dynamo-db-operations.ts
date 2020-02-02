@@ -1,5 +1,4 @@
 import Client from "./dynamo-db-client";
-import { PutItemOutput, GetItemOutput } from "aws-sdk/clients/dynamodb";
 
 function getDynamoDbValue(value) {
     if (value instanceof Date) {
@@ -29,16 +28,41 @@ function toItem(dto) {
     return item;
 }
 
-export async function createItem(
-    tableName: string,
-    item
-): Promise<PutItemOutput> {
+function mountUpdate(dto) {
+    const updateFields = [];
+    const attributeMap = {};
+    const attributeValues = {};
+    Object.keys(dto).forEach(key => {
+        if (dto[key]) {
+            updateFields.push(`#${key} = :${key}`);
+            attributeValues[`:${key}`] = getDynamoDbValue(dto[key]);
+            attributeMap[`#${key}`] = key;
+        }
+    });
+    const updateExpression = `set ${updateFields.join(", ")}`;
+    return {
+        UpdateExpression: updateExpression,
+        ExpressionAttributeValues: attributeValues,
+        ExpressionAttributeNames: attributeMap
+    };
+}
+
+export async function createItem(tableName: string, item) {
     return Client.putItem({
         TableName: tableName,
         Item: toItem(item)
     }).promise();
 }
 
-export async function getItem(params): Promise<GetItemOutput> {
+export async function getItem(params) {
     return Client.getItem(params).promise();
+}
+
+export async function updateItem(table, key, item) {
+    return Client.updateItem({
+        TableName: table,
+        Key: key,
+        ReturnValues: "ALL_NEW",
+        ...mountUpdate(item)
+    }).promise();
 }

@@ -1,4 +1,8 @@
-import { createItem, getItem } from "@dynamo-db/dynamo-db-operations";
+import {
+    createItem,
+    getItem,
+    updateItem
+} from "@dynamo-db/dynamo-db-operations";
 import accountTable from "@tables/account-table.json";
 
 export async function save(account) {
@@ -15,4 +19,8 @@ export async function getById(id: string) {
         }
     };
     return getItem(params);
+}
+
+export async function update(key, account) {
+    return updateItem(accountTable.TableName, key, account);
 }

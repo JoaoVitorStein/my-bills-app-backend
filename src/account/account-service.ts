@@ -12,3 +12,13 @@ export async function getAccountById(id): Promise<Account> {
     const item = await AccountRepository.getById(id);
     return accountFromItem(item.Item);
 }
+
+export async function updateAccount(id, account: Account) {
+    const key = {
+        id: {
+            S: id
+        }
+    };
+    const updatedItem = await AccountRepository.update(key, account);
+    return accountFromItem(updatedItem.Attributes);
+}
